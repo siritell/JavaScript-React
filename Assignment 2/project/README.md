@@ -23,7 +23,9 @@ brew services start mongodb-community
 4. Start the API
 
 node --watch server/api.js
+
 **or**
+
 node server/api.js
 
 5. Start the React app
