@@ -16,13 +16,13 @@ Dependencies:
 
 3. Make sure MongoDB is running locally
 
-# if using Brew, otherwise start it manually
+**if using Brew, otherwise start it manually**
 brew services start mongodb-community  
 
 4. Start the API
 
 node --watch server/api.js
-# or
+**or**
 node server/api.js
 
 5. Start the React app
