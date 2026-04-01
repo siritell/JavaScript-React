@@ -1,7 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const { MongoClient, ObjectId } = require("mongodb");
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const PORT = 3003;
@@ -26,6 +28,29 @@ async function startServer() {
 }
 
 startServer();
+
+app.get("/seed", async (req, res) => {
+  await reviewsCollection.deleteMany({});
+
+  await reviewsCollection.insertMany([
+    {
+      name: "Miyakodori",
+      address: "Upplandsgatan 7",
+      image: "Miyakodori.jpg",
+      text: "Miyakodori is a vibrant yet relaxed Japanese izakaya...",
+      standouts: ["pork belly skewers", "chicken liver mousse with milk bread"]
+    },
+    {
+      name: "Lu",
+      address: "Skånegatan 88",
+      image: "Lu.jpg",
+      text: "Lu serves Cantonese street style food from Hong Kong...",
+      standouts: ["pork dumplings", "beef noodles"]
+    }
+  ]);
+
+  res.send("Seeded!");
+});
 
 app.get("/reviews", async (req, res) => {
 	try {

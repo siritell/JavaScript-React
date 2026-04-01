@@ -33,9 +33,82 @@ main {
   text-align: center;
 }
 
+.btn {
+  background: rgb(183, 0, 0);
+  border: none;
+  border-radius: 18px;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 0.9em;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background: rgb(150, 0, 0);
+}
+
+.navbar .btn {
+  margin-right: 0.2em;
+}
+
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.8em;
+  margin-right: 0.2em;
+}
+
+.btn-delete {
+  background: #888;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background: #555;
+}
+
+.review-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.2em;
+  margin-top: 1em;
+}
+
+.review-actions .btn-small {
+  padding: 0.4em 0.8em;
+  font-size: 0.8em;
+}
+
+.review-actions .btn-delete {
+  background: #888;
+  color: #fff;
+}
+
+.review-actions .btn-delete:hover {
+  background: #555;
+}
+
+.feedback-message {
+  background-color: rgb(247, 247, 247);
+  color: rgb(183, 0, 0);
+  padding: 0.6em 1em;
+  border-radius: 18px;
+  border: 1px solid rgb(183, 0, 0);
+  margin: 1em auto;
+  text-align: center;
+  font-family: "Bai Jamjuree", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  box-shadow: 0 0.125em 0.375em rgba(0, 0, 0, 0.1);
+  max-width: 30em;
+}
+
 footer {
   text-align: center;
-  padding: 10px 0;
+  padding: 0.6em 0;
   font-family: "Bai Jamjuree", sans-serif;
   font-size: 0.8em;
+  color: rgb(80, 80, 80);
 }

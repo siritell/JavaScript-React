@@ -1,0 +1,89 @@
+.review-form {
+  width: 50%;
+  max-width: 37.5em;
+  margin: 0 auto;
+  padding: 1.25em 1em;
+  box-sizing: border-box;
+  border-radius: 0.75em;
+  background-color: rgb(247, 227, 227);
+}
+
+.review-form h2 {
+  color: rgb(183, 0, 0);
+  font-family: "Bai Jamjuree", sans-serif;
+  font-size: 1.5em;
+  margin-bottom: 1.25em;
+  text-transform: uppercase;
+}
+
+.review-form label {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 600;
+  font-size: 0.85em;
+  color: rgb(80, 80, 80);
+  margin-bottom: 0.25em;
+  display: block;
+  text-align: left;
+}
+
+.review-form input[type="text"],
+.review-form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.5em 0.75em;
+  margin-bottom: 0.75em;
+  border: 1px solid rgb(183, 0, 0);
+  border-radius: 1.25em;
+  font-family: inherit;
+  font-size: 0.9em;
+  box-sizing: border-box;
+  background: #fff;
+  resize: vertical;
+}
+
+.review-form textarea {
+  height: 9.375em;
+}
+
+@media (max-width: 600px) {
+  .review-form {
+    width: 90%;
+    max-width: none;
+    padding: 1em;
+  }
+
+  .review-form input[type="text"],
+  .review-form textarea {
+    width: 100%;
+  }
+
+  .review-card,
+  .review-card:nth-child(even) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .review-card img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.75em;
+  }
+
+  .review-content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .review-content h3,
+  .review-content p {
+    text-align: center;
+  }
+
+  .review-actions {
+    justify-content: center;
+    gap: 0.5em;
+    margin-top: 0.75em;
+  }
+}

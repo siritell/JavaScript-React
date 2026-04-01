@@ -1,16 +1,15 @@
 import "./Navbar.css";
 
-function Navbar() {
-    return (
-        <nav className="navbar">
-            <h1>Hey Siri...</h1>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Reviews</a></li>
-                <li><a href="#">Add Review</a></li>
-            </ul>
-        </nav>
-    );
+function Navbar({ showAddForm, showReviews }) {
+  return (
+    <header className="navbar">
+      <h1>Hey Siri...</h1>
+      <nav>
+        <button className="btn" onClick={showReviews}>Reviews</button>
+        <button className="btn" onClick={showAddForm}>Add Review</button>
+      </nav>
+    </header>
+  );
 }
 
 export default Navbar;

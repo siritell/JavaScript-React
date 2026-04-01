@@ -63,22 +63,36 @@
     width: 100%;
     max-width: 100%;
     height: auto;
-    display: block;
     object-fit: cover;
+    margin-bottom: 0.75em;
     flex: 0 0 auto;
-    margin-bottom: 12px;
   }
 
   .review-content {
     width: 100%;
-    min-width: 0;
+    padding: 0;
     box-sizing: border-box;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   .review-content h3,
   .review-content p {
     text-align: center;
+  }
+
+  .review-actions {
+    justify-content: center;
+    gap: 0.5em;
+    margin-top: 0.75em;
+  }
+
+  .review-form {
+    width: 90%;
+    max-width: none;
+    padding: 1em;
+  }
+
+  .review-form input[type="text"],
+  .review-form textarea {
+    width: 100%;
   }
 }
