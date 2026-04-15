@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./Navbar";
 import ReviewCard from "./ReviewCard";
 import AddReviewForm from "./AddReviewForm";
@@ -6,30 +7,18 @@ import EditReviewForm from "./EditReviewForm";
 import Footer from "./Footer";
 import "./App.css";
 
-const initialReviews = [
-  {
-    _id: "1",
-    name: "Miyakodori",
-    address: "Upplandsgatan 7",
-    image: "Miyakodori.jpg",
-    text: "Miyakodori is a vibrant yet relaxed Japanese izakaya...",
-    standouts: ["pork belly skewers", "chicken liver mousse with milk bread"],
-  },
-  {
-    _id: "2",
-    name: "Lu",
-    address: "Skånegatan 88",
-    image: "Lu.jpg",
-    text: "Lu serves Cantonese street style food from Hong Kong...",
-    standouts: ["pork dumplings", "beef noodles"],
-  },
-];
-
 function App() {
-  const [reviews, setReviews] = useState(initialReviews);
+  const [reviews, setReviews] = useState([]);
   const [currentView, setCurrentView] = useState("reviews");
   const [reviewToEdit, setReviewToEdit] = useState(null);
   const [feedback, setFeedback] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3003/reviews")
+      .then((response) => setReviews(response.data))
+      .catch((err) => console.error(err));
+  }, []);
 
   const showReviews = () => setCurrentView("reviews");
   const showAddForm = () => setCurrentView("add");
