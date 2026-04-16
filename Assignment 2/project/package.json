@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://siritell.github.io/JavaScript-React",
+  "_REVIEW_1": "express is required by server/api.js but is not listed as a dependency. Run: npm install express",
+  "_REVIEW_2": "Server-only packages (cors, mongodb, and the missing express) are mixed with client dependencies. Move them to a separate server/package.json or use a monorepo structure so the frontend bundle does not pull in server code.",
+  "_REVIEW_3": "axios is listed as a dependency but is never imported or used anywhere in the source code. Either integrate it for API calls or remove it.",
+  "_REVIEW_4": "No script to start the API server. Add something like: \"server\": \"node --watch server/api.js\" so developers can start both frontend and backend easily.",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

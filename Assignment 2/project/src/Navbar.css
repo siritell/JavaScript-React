@@ -13,6 +13,9 @@
   color: rgb(183, 0, 0);
 }
 
+/* REVIEW: The .navbar ul, .navbar li, and .navbar a rules below target elements that do
+   not exist in Navbar.jsx (it uses <button> elements, not <ul>/<li>/<a>). These are dead
+   CSS rules — remove them to avoid confusion. */
 .navbar ul {
   display: flex;
   gap: 2.5em;

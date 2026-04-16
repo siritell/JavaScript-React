@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import "./ReviewForm.css";
 
+// REVIEW: This component duplicates almost all of AddReviewForm.jsx. Extract a shared
+// ReviewForm component that accepts an onSubmit handler and optional initialValues prop.
+
 function EditReviewForm({ review, updateReview }) {
+  // REVIEW: Initialising state to "" then immediately overwriting via useEffect is
+  // unnecessary. Pass the review fields directly as initial values to useState, e.g.
+  // useState(review?.name || ""). This avoids an extra render cycle.
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [image, setImage] = useState("");
   const [text, setText] = useState("");
   const [standouts, setStandouts] = useState("");
 
+  // REVIEW: The dependency array [review] compares by object reference. If App.jsx
+  // ever recreates the review object (e.g. via spread), this effect will re-fire even
+  // when the data hasn't changed. Consider depending on review._id instead.
   useEffect(() => {
     if (review) {
       setName(review.name);
@@ -27,6 +36,8 @@ function EditReviewForm({ review, updateReview }) {
       address,
       image,
       text,
+      // REVIEW: Same empty-string issue as AddReviewForm — splitting an empty standouts
+      // field produces [""]. Add .filter(Boolean) after .map().
       standouts: standouts.split(",").map((s) => s.trim()),
     };
 
@@ -64,6 +75,7 @@ function EditReviewForm({ review, updateReview }) {
         </div>
 
         <div className="form-group">
+          {/* REVIEW: Same as AddReviewForm — use type="url" for basic URL validation. */}
           <label htmlFor="image">Image URL</label>
           <input
             type="text"
@@ -87,6 +99,8 @@ function EditReviewForm({ review, updateReview }) {
         </div>
 
         <div className="form-group">
+          {/* REVIEW: "Standout's" — same grammar error as AddReviewForm. Should be
+              "Standouts". */}
           <label htmlFor="standouts">Standout's (comma separated)</label>
           <input
             type="text"
@@ -98,7 +112,9 @@ function EditReviewForm({ review, updateReview }) {
           />
         </div>
 
-        <button type="submit" className="btn">Update Review</button>
+        <button type="submit" className="btn">
+          Update Review
+        </button>
       </form>
     </div>
   );

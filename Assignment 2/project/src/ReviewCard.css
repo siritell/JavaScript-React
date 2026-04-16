@@ -17,6 +17,11 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
+/* REVIEW: This :nth-child(even) rule targets the card's position within its parent, but
+   each ReviewCard is wrapped in a .review-wrapper div in App.jsx, making it always the
+   first child of its wrapper. The alternating layout therefore never triggers. The
+   alternating logic would need to be applied to .review-wrapper:nth-child(even) instead,
+   or use a class passed as a prop. */
 .review-card:nth-child(even) {
   flex-direction: row-reverse;
 }

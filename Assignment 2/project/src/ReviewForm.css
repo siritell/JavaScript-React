@@ -57,6 +57,10 @@
     width: 100%;
   }
 
+  /* REVIEW: The mobile rules below for .review-card, .review-card img, .review-content,
+     and .review-actions are duplicated — they also appear in ReviewCard.css. Having them
+     in two places makes maintenance harder and can cause specificity conflicts. Keep them
+     only in ReviewCard.css since they style ReviewCard elements. */
   .review-card,
   .review-card:nth-child(even) {
     flex-direction: column;

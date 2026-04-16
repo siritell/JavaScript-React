@@ -1,18 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap');
+/* REVIEW: The Google Fonts import loads the "Bai Jamjuree" font, but the body uses
+   'Calluna Sans' as its primary font. 'Calluna Sans' is not a standard web-safe font and
+   is not imported — it will silently fall back to 'Gill Sans' or sans-serif on most
+   machines. Either import Calluna Sans or switch the body to Bai Jamjuree for consistency. */
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap");
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Calluna Sans', 'Gill Sans', sans-serif;
+  font-family: "Calluna Sans", "Gill Sans", sans-serif;
   font-size: 0.9em;
   background-color: rgb(247, 227, 227);
   color: #000;
   line-height: 1.5;
 }
 
-h1, h2, h4 {
+h1,
+h2,
+h4 {
   font-family: "Bai Jamjuree", sans-serif;
   color: rgb(183, 0, 0);
   margin: 0.5em 0;
@@ -23,7 +29,8 @@ p {
   font-family: "Bai Jamjuree", sans-serif;
 }
 
-ul, ol {
+ul,
+ol {
   padding-inline-start: 0;
   margin: 0;
 }
@@ -105,6 +112,8 @@ main {
   max-width: 30em;
 }
 
+/* REVIEW: Footer styles are defined here in App.css instead of in a dedicated Footer.css.
+   This makes the Footer component implicitly dependent on App.css being loaded first. */
 footer {
   text-align: center;
   padding: 0.6em 0;
