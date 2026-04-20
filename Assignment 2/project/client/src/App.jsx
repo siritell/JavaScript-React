@@ -13,7 +13,7 @@ function App() {
   const [reviewToEdit, setReviewToEdit] = useState(null);
   const [feedback, setFeedback] = useState("");
 
-  const API_URL = "http://localhost:3003";
+  const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     axios
