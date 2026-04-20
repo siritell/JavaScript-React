@@ -13,7 +13,7 @@ function ReviewCard({ review, onEdit, onDelete }) {
         <p>{review.address}</p>
         <p>{review.text}</p>
         <p>
-          <b>Standout's:</b>
+          <b>Standouts:</b>
           <br />
           {review.standouts.map((item, idx) => (
             <span key={idx}>
