@@ -29,28 +29,56 @@ function App() {
     setCurrentView("edit");
   };
 
-  const addReview = (newReview) => {
-    setReviews([newReview, ...reviews]);
-    setCurrentView("reviews");
-    setFeedback("Review added successfully!");
-    setTimeout(() => setFeedback(""), 3000);
+  const addReview = async (newReview) => {
+    try {
+      const res = await axios.post(`${API_URL}/reviews`, newReview);
+
+      setReviews((prev) => [res.data, ...prev]);
+
+      setCurrentView("reviews");
+      setFeedback("Review added successfully!");
+      setTimeout(() => setFeedback(""), 3000);
+    } catch (err) {
+      console.error(err);
+      setFeedback("Failed to add review");
+      setTimeout(() => setFeedback(""), 3000);
+    }
   };
 
-  const updateReview = (updatedReview) => {
-    setReviews(
-      reviews.map((rev) =>
-        rev._id === updatedReview._id ? updatedReview : rev,
-      ),
-    );
-    setCurrentView("reviews");
-    setFeedback("Review updated successfully!");
-    setTimeout(() => setFeedback(""), 3000);
+  const updateReview = async (updatedReview) => {
+    try {
+      const res = await axios.put(
+        `${API_URL}/reviews/${updatedReview._id}`,
+        updatedReview,
+      );
+
+      setReviews((prev) =>
+        prev.map((rev) => (rev._id === updatedReview._id ? res.data : rev)),
+      );
+
+      setCurrentView("reviews");
+      setFeedback("Review updated successfully!");
+      setTimeout(() => setFeedback(""), 3000);
+    } catch (err) {
+      console.error(err);
+      setFeedback("Failed to update review");
+      setTimeout(() => setFeedback(""), 3000);
+    }
   };
 
-  const deleteReview = (id) => {
-    setReviews(reviews.filter((rev) => rev._id !== id));
-    setFeedback("Review deleted successfully!");
-    setTimeout(() => setFeedback(""), 3000);
+  const deleteReview = async (id) => {
+    try {
+      await axios.delete(`${API_URL}/reviews/${id}`);
+
+      setReviews((prev) => prev.filter((rev) => rev._id !== id));
+
+      setFeedback("Review deleted successfully!");
+      setTimeout(() => setFeedback(""), 3000);
+    } catch (err) {
+      console.error(err);
+      setFeedback("Failed to delete review");
+      setTimeout(() => setFeedback(""), 3000);
+    }
   };
 
   return (
@@ -76,13 +104,7 @@ function App() {
                   </button>
                   <button
                     className="btn btn-small btn-delete"
-                    onClick={() => {
-                      setReviews(
-                        reviews.filter((rev) => rev._id !== review._id),
-                      );
-                      setFeedback("Review deleted successfully!");
-                      setTimeout(() => setFeedback(""), 3000);
-                    }}
+                    onClick={() => deleteReview(review._id)}
                   >
                     Delete
                   </button>
