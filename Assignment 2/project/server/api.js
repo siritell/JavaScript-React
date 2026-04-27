@@ -4,7 +4,11 @@ const { MongoClient, ObjectId } = require("mongodb");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://java-script-react.vercel.app",
+  }),
+);
 app.use(express.json());
 
 const PORT = process.env.PORT || 3003;
