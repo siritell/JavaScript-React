@@ -4,7 +4,7 @@ function ReviewCard({ review, onEdit, onDelete }) {
   return (
     <div className="review-card">
       <img
-        src={`/JavaScript-React/${review.image}`}
+        src={`/${review.image}`}
         alt={review.name}
         className="review-image"
       />
