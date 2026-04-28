@@ -35,7 +35,7 @@ async function startServer() {
 
 startServer();
 
-app.get("/seed", async (req, res) => {
+app.post("/seed", async (req, res) => {
   await reviewsCollection.deleteMany({});
 
   await reviewsCollection.insertMany([
