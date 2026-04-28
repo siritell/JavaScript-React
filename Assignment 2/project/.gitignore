@@ -32,4 +32,5 @@ pnpm-debug.log*
 # optional: local runtime files
 *.pid
 *.seed
-*.pid.lock
+*.pid.lock.DS_Store
+.vscode/
