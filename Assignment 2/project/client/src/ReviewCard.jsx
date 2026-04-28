@@ -1,6 +1,6 @@
 import "./ReviewCard.css";
 
-function ReviewCard({ review, onEdit, onDelete }) {
+function ReviewCard({ review }) {
   return (
     <div className="review-card">
       <img
