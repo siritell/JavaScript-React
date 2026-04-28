@@ -45,7 +45,7 @@ function App() {
       setTimeout(() => setFeedback(""), 3000);
     } catch (err) {
       console.error(err);
-      setFeedback("Failed to add review");
+      setFeedback("Feature disabled in public version");
       setTimeout(() => setFeedback(""), 3000);
     }
   };
@@ -64,7 +64,7 @@ function App() {
       setTimeout(() => setFeedback(""), 3000);
     } catch (err) {
       console.error(err);
-      setFeedback("Failed to update review");
+      setFeedback("Feature disabled in public version");
       setTimeout(() => setFeedback(""), 3000);
     }
   };
@@ -77,7 +77,7 @@ function App() {
       setTimeout(() => setFeedback(""), 3000);
     } catch (err) {
       console.error(err);
-      setFeedback("Failed to delete review");
+      setFeedback("Feature disabled in public version");
       setTimeout(() => setFeedback(""), 3000);
     }
   };
