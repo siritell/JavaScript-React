@@ -63,6 +63,7 @@
     width: 100%;
     max-width: 100%;
     height: auto;
+    max-height: 300px;
     object-fit: cover;
     margin-bottom: 0.75em;
     flex: 0 0 auto;
