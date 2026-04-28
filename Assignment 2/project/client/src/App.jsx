@@ -12,14 +12,21 @@ function App() {
   const [currentView, setCurrentView] = useState("reviews");
   const [reviewToEdit, setReviewToEdit] = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const API_URL = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     axios
       .get(`${API_URL}/reviews`)
-      .then((response) => setReviews(response.data))
-      .catch((err) => console.error(err));
+      .then((response) => {
+        setReviews(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsLoading(false);
+      });
   }, []);
 
   const showReviews = () => setCurrentView("reviews");
@@ -32,9 +39,7 @@ function App() {
   const addReview = async (newReview) => {
     try {
       const res = await axios.post(`${API_URL}/reviews`, newReview);
-
       setReviews((prev) => [res.data, ...prev]);
-
       setCurrentView("reviews");
       setFeedback("Review added successfully!");
       setTimeout(() => setFeedback(""), 3000);
@@ -51,11 +56,9 @@ function App() {
         `${API_URL}/reviews/${updatedReview._id}`,
         updatedReview,
       );
-
       setReviews((prev) =>
         prev.map((rev) => (rev._id === updatedReview._id ? res.data : rev)),
       );
-
       setCurrentView("reviews");
       setFeedback("Review updated successfully!");
       setTimeout(() => setFeedback(""), 3000);
@@ -69,9 +72,7 @@ function App() {
   const deleteReview = async (id) => {
     try {
       await axios.delete(`${API_URL}/reviews/${id}`);
-
       setReviews((prev) => prev.filter((rev) => rev._id !== id));
-
       setFeedback("Review deleted successfully!");
       setTimeout(() => setFeedback(""), 3000);
     } catch (err) {
@@ -90,27 +91,31 @@ function App() {
 
         {currentView === "reviews" && (
           <div className="reviews-container">
-            {reviews.map((review, index) => (
-              <div className="review-wrapper" key={review._id}>
-                <ReviewCard review={review} />
-                <div
-                  className={`review-actions ${index % 2 === 0 ? "left" : "right"}`}
-                >
-                  <button
-                    className="btn btn-small"
-                    onClick={() => showEditForm(review)}
+            {isLoading ? ( // 3. ADDED
+              <div className="spinner"></div>
+            ) : (
+              reviews.map((review, index) => (
+                <div className="review-wrapper" key={review._id}>
+                  <ReviewCard review={review} />
+                  <div
+                    className={`review-actions ${index % 2 === 0 ? "left" : "right"}`}
                   >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-small btn-delete"
-                    onClick={() => deleteReview(review._id)}
-                  >
-                    Delete
-                  </button>
+                    <button
+                      className="btn btn-small"
+                      onClick={() => showEditForm(review)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-small btn-delete"
+                      onClick={() => deleteReview(review._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         )}
 
