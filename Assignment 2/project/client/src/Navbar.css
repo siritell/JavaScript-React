@@ -49,10 +49,11 @@
   }
 
   .navbar ul {
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.5em;
     width: 100%;
     padding: 0;
+    justify-content: center;
   }
 
   .navbar li {
@@ -60,7 +61,7 @@
   }
 
   .navbar .btn {
-    width: 80%;
-    margin: 0.25em auto;
+    width: auto;
+    margin: 0.25em;
   }
 }
