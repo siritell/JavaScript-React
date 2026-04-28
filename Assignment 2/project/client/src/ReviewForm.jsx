@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ReviewForm.css";
 
-function EditReviewForm({ review, updateReview }) {
+function ReviewForm({ review, onSubmit }) {
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [image, setImage] = useState("");
@@ -21,8 +21,8 @@ function EditReviewForm({ review, updateReview }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const updated = {
-      ...review,
+    const submitted = {
+      ...(review || { _id: Date.now().toString() }),
       name,
       address,
       image,
@@ -30,13 +30,21 @@ function EditReviewForm({ review, updateReview }) {
       standouts: standouts.split(",").map((s) => s.trim()),
     };
 
-    updateReview(updated);
+    onSubmit(submitted);
+
+    if (!review) {
+      setName("");
+      setAddress("");
+      setImage("");
+      setText("");
+      setStandouts("");
+    }
   };
 
   return (
     <div className="review-form">
       <form onSubmit={handleSubmit}>
-        <h2>Edit Review</h2>
+        <h2>{review ? "Edit Review" : "Add Review"}</h2>
 
         <div className="form-group name-row">
           <div className="name-field">
@@ -87,7 +95,7 @@ function EditReviewForm({ review, updateReview }) {
         </div>
 
         <div className="form-group">
-          <label htmlFor="standouts">Standout's (comma separated)</label>
+          <label htmlFor="standouts">Standouts (comma separated)</label>
           <input
             type="text"
             id="standouts"
@@ -98,10 +106,12 @@ function EditReviewForm({ review, updateReview }) {
           />
         </div>
 
-        <button type="submit" className="btn">Update Review</button>
+        <button type="submit" className="btn">
+          {review ? "Update Review" : "Add Review"}
+        </button>
       </form>
     </div>
   );
 }
 
-export default EditReviewForm;
+export default ReviewForm;

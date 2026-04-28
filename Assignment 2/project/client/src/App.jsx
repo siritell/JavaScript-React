@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
 import ReviewCard from "./ReviewCard";
-import AddReviewForm from "./AddReviewForm";
-import EditReviewForm from "./EditReviewForm";
+import ReviewForm from "./ReviewForm";
 import Footer from "./Footer";
 import "./App.css";
 
@@ -119,9 +118,9 @@ function App() {
           </div>
         )}
 
-        {currentView === "add" && <AddReviewForm addReview={addReview} />}
+        {currentView === "add" && <ReviewForm onSubmit={addReview} />}
         {currentView === "edit" && reviewToEdit && (
-          <EditReviewForm review={reviewToEdit} updateReview={updateReview} />
+          <ReviewForm review={reviewToEdit} onSubmit={updateReview} />
         )}
       </main>
 
